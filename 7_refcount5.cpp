@@ -15,7 +15,7 @@ public:
 	T& operator*() { return *obj; }
 };
 
-
+// 이 코드는 Truck 의 소멸자가 호출되지 않는 문제가 있습니다.
 class RefCount
 {
 	int refCount = 0;
