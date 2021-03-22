@@ -43,7 +43,8 @@ int main()
 template<typename T> class list
 {
 public:
-	typedef T value_type; // 핵심.. list가 저장하는 타입을 알려주기 위해
+	//typedef T value_type; // 핵심.. list가 저장하는 타입을 알려주기 위해
+	using value_type = T; // C++11 스타일 
 };
 
 list<int>::value_type n; // 
