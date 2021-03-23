@@ -12,7 +12,19 @@ void sort(Iter first, Iter last, Pred f)
 {
 	std::cout << "sort 조건자를 받는 버전" << std::endl;
 }
- 
+
+template<typename Cont>
+void sort(Cont c)
+{
+	std::cout << "sort 컨테이너 버전" << std::endl;
+}
+
+template<typename Cont, typename Pred>
+void sort(Cont c, Pred f)
+{
+	std::cout << "sort 컨테이너 조건자 버전" << std::endl;
+}
+
 int main()
 {
 	std::vector<int> v = { 1,2,3,4,5 };
@@ -21,4 +33,10 @@ int main()
 
 	// 비교정책을 교체 가능하게 설계하자.
 	sort(v.begin(), v.end(), [](int a, int b) { return a < b; } );
+
+	sort(v); // 컨테이너를 받는 버전
+
+	sort(v , [](int a, int b) { return a < b; });
 }
+
+
