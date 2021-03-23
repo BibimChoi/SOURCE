@@ -2,6 +2,10 @@
 #include <iostream>
 #include <vector>
 
+// find_if 로 하지 않아도 enable_if 를 사용하면 find()를 만들어서
+// 값인 경우와 함수인경우의 구별이 가능합니다.
+// 하지만 STL 만들때는 enable_if 개념이 없었습니다.
+
 template<typename Iter> 
 void sort(Iter first, Iter last)
 {
@@ -12,13 +16,11 @@ void sort(Iter first, Iter last, Pred f)
 {
 	std::cout << "sort 조건자를 받는 버전" << std::endl;
 }
-
 template<typename Cont>
 void sort(Cont c)
 {
 	std::cout << "sort 컨테이너 버전" << std::endl;
 }
-
 template<typename Cont, typename Pred>
 void sort(Cont c, Pred f)
 {
