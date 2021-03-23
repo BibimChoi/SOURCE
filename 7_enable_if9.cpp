@@ -28,19 +28,27 @@ public:
 	}
 	*/
 	// 템플릿인자에 enable_if를 적용하면 함수의 모양 자체는 보기 좋아진다.
+	/*
 	template<typename U, 
-	         typename std::enable_if<조건, int>::type = 0> // int = 0>
+	         typename std::enable_if<std::is_convertible_v<U,T>, int>::type = 0> // int = 0>
 	Point(const Point<U>& pt) : x(pt.x), y(pt.y)
 	{
 	}
+	*/
+	/*
 	// 아래 처럼도 가능
 	template<typename U,
 			 typename  = typename std::enable_if<조건, int>::type >
 		Point(const Point<U>& pt) : x(pt.x), y(pt.y)
 	{
 	}
+	*/
 
-
+	template<typename U,
+		    std::enable_if_t<std::is_convertible_v<U, T> >* = 0> 
+		Point(const Point<U>& pt) : x(pt.x), y(pt.y)
+	{
+	}
 
 
 
@@ -63,6 +71,6 @@ int main()
 	Point<double> p3 = p1;
 	Point<double> p4 = p2;
 
-	Point<int*> p5 = p1; // 
+//	Point<int*> p5 = p1; // 
 }
 
