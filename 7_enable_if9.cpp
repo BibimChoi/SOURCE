@@ -45,11 +45,10 @@ public:
 	*/
 
 	template<typename U,
-		    std::enable_if_t<std::is_convertible_v<U, T> >* = 0> 
+		    std::enable_if_t<std::is_convertible_v<U, T> >* = nullptr > 
 		Point(const Point<U>& pt) : x(pt.x), y(pt.y)
 	{
 	}
-
 
 
 	template<typename> friend class Point;
@@ -57,14 +56,15 @@ public:
 
 
 
-
-
-
+//template<void* n = 0> class Test {};
+template<void* n = nullptr> class Test {};
 
 
 
 int main()
 {
+	Test<> t;
+
 	Point<double> p1(2.1, 3.4);
 	Point<int> p2(1, 2);
 
