@@ -17,11 +17,12 @@ using true_type  = integral_constant<bool, true>;
 using false_type = integral_constant<bool, false>;
 
 // 실제 is_pointer는 아래처럼 만들게 됩니다.
-template<typename T> struct is_pointer     : false_type {};
-template<typename T> struct is_pointer<T*> : true_type  {};
+template<typename T> struct is_pointer     : false_type {}; // value = false
+template<typename T> struct is_pointer<T*> : true_type  {}; // value = true
 
 
+int main()
+{
 
-
-
+}
 
