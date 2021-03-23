@@ -74,3 +74,5 @@ int main()
 //	Point<int*> p5 = p1; // 
 }
 
+
+// c++17 :  std::vector v = {1,2,3}   // v<int> 에서 <> 없어도 됩니다.
