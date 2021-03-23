@@ -36,6 +36,13 @@ template<> struct Object<int, short>
 	static void foo() { cout << "int, short" << endl; }
 };
 
+// primary template 의 템플릿 인자는 2개지만
+// 부분 특수화 시에는 아래처럼 3개가 될수도 있습니다.
+template<typename A, typename B, typename C> struct Object<A, Object<B, C> >
+{
+	static void foo() { cout << "A, Object<B, C>" << endl; }
+};
+
 int main()
 {
 	Object<int, double>::foo();	// T,  U
@@ -48,5 +55,5 @@ int main()
 	
 	Object<int, short>::foo();   // int, short
 
-	Object<int, Object<char, double>>::foo(); // A, Object<B, C>  라고 출력해보세요.
+	Object<short, Object<char, double>>::foo(); // "A, Object<B, C>"  라고 출력해보세요.
 }
