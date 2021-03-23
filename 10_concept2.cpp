@@ -10,6 +10,10 @@ void find(IT first, IT last, T value)
 	std::cout << "값 버전" << std::endl;
 }
 
+// predicate<F, 타입> : F라는 함수 타입이 "타입"을 인자로 받을수 있는가 ?
+// iter_value_t<반복자> : 반복자가 가리키는 요소의 타입..
+//						IT::value_type => C++98 표기
+
 template<typename IT, typename T> requires std::predicate<T, std::iter_value_t<IT> >
 void find(IT first, IT last, T func) 
 {
