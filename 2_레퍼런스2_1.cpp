@@ -2,7 +2,8 @@
 
 class Point { int x, y; };
 
-void foo(const Point& pt) {}
+void foo(Point pt) {}
+//void foo(const Point& pt) {}
 
 int main()
 {
