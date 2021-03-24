@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 
 template<typename T> class Vector
 {
@@ -15,7 +16,7 @@ template<> class Vector<bool>
 {
 	int* buff;
 public:
-	Vector(std::size_t sz, T value)
+	Vector(std::size_t sz,  bool value)
 	{
 		buff = new int[sz/32 + 1];
 	}
@@ -27,20 +28,25 @@ public:
 		int idx;
 
 		BitProxy(int* buff, int idx) : buff(buff), idx(idx) {}
-	};
-	   
 
-	bool& operator[](int idx) { return BitProxy(buff, idx); }
+		BitProxy& operator=(bool b)
+		{
+			printf("%p 버퍼의 %d번째를 %d 로 채우기\n", buff, idx, b);
+			return *this;
+		}
+	};	   
+
+	BitProxy operator[](int idx) { return BitProxy(buff, idx); }
 };
-
-
 int main()
 {
 	Vector<int>  v1(10, 3);
 	Vector<bool> v2(10, false);
 
-	auto& r1 = v1[0]; // ok.    v1[0] 은 임시객체 아님.
-	auto& r2 = v2[0]; // error. v2[0] 은 임시객체 반환.
+	v2[0] = false;
+//	bool b = v2[0];
+//	auto& r1 = v1[0]; // ok.    v1[0] 은 임시객체 아님.
+//	auto& r2 = v2[0]; // error. v2[0] 은 임시객체 반환.
 }
 
 
