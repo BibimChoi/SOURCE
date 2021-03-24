@@ -7,6 +7,12 @@
 //			복사 계열 : 모든 멤버로 복사
 //			move 계열 : 모든 멤버로 move
 
+// 규칙 2. 사용자가 "복사계열" 만 제공할때 
+//         컴파일러는 move 계열을 만들어 주지 않는다.
+//			std::move() 사용시 사용자가 만든 "복사 생성자" 사용
+//			move 기능을 지원너하려면
+//			(A) move 생성자를 직접 만들거나
+//			(B) = default 컴파일러에게 요청한다.
 class Object
 {
 public:
@@ -17,6 +23,10 @@ public:
 	{
 		std::cout << "사용자가 만든 복사 생성자" << std::endl;
 	}
+
+	Object(Object&&) = default; // 모든 멤버를 move로 옮기는 기본 버전을 제공해 달라
+
+
 };
 
 int main()
