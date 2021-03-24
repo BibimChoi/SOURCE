@@ -30,6 +30,9 @@ public:
 	// "복사 setter"와 "move setter"를 각각 만들어라
 	void setData(const Data& d) { data = d; }
 	void setData(Data&& d)      { data = std::move(d); }
+
+	// 4. C++11부터 call by value(pass by value) 가 아주 나쁜것은 아니다.
+	void setData(Data d) { data = std::move(d); }
 };
 
 int main()
