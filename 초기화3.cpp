@@ -29,7 +29,9 @@ int main()
 	std::vector<int> v2 = { 1,2,3,4,5,6,7,8,9,10 }; // ok
 
 	// 주의!! 아래 2줄의 차이점은 반드시 알아야 합니다.
-	std::vector<int> v3( 10, 2 );
-	std::vector<int> v4{ 10, 2 };
+	std::vector<int> v3( 10, 2 ); // int 2개인 생성자. 
+								  // 10개의 요소를 2로 초기화
+	std::vector<int> v4{ 10, 2 }; // std::initializer_list<int> 생성자
+								  // 2개를 10, 2로 초기화
 }
 
