@@ -25,5 +25,10 @@ int main()
 	foo(static_cast<Point&&>(r)); // 이순간 메모리상의 변화는 없습니다.
 								// 단지, r을 foo(rvalue) 버전으로 보내달라는 요청일뿐
 
+	int&& r2 = 10;
+	foo(static_cast<int&&>(r2)); // 메모리 변화 없음.
+	foo(std::move(r2)); // 위와 동일!!!
+	foo(static_cast<int>(r2));   // ok.. 
+	int n = r2;
 }
 
