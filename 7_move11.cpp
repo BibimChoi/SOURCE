@@ -32,7 +32,9 @@ public:
 	void setData(Data&& d)      { data = std::move(d); }
 
 	// 4. C++11부터 call by value(pass by value) 가 아주 나쁜것은 아니다.
+	// move 계열 함수가 충분히 빠른 타입이라면 " call by value "도 나쁘지는 않다.
 	void setData(Data d) { data = std::move(d); }
+//	void setData(Data d) { data = d; } // C++98 시절은 이렇게 했기 때문에 이동이 아닌 복사의 오버헤드					
 };
 
 int main()
@@ -40,8 +42,9 @@ int main()
 	Data d;
 
 	Test test;
-	test.setData(d);
-	test.setData( std::move(d) );
+									// 2개 setter			call by value
+	test.setData(d);				// 복사 1회				복사 1회, 이동 1회
+	test.setData( std::move(d) );	// move 1회				이동 2회
 }
 
 
