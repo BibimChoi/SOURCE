@@ -4,7 +4,7 @@
 // int&  : 정수형 lvalue 만 받을수 있다.
 // int&& : 정수형 rvalue 만 받을수 있다.
 // T&    : 임의 타입의 lvalue 만 받을수 있다.
-// T&    :
+// T&&   :
 
 void f1(int&  r) {}
 void f2(int&& r) {}
@@ -41,8 +41,15 @@ int main()
 template<typename T> void f4(T&& a)
 {
 }
+int main()
+{
+	int n = 10;
 
-
+	// 1. 인자를 명시적으로 전달하는 경우
+	f4<int>(? );   // T=       T&&=        f4(? a)
+	f4<int&>(? );  // T=       T&&=        f4(? a)
+	f4<int&>(? );  // T=       T&&=        f4(? a)
+}
 
 
 
