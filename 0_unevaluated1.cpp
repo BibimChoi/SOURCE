@@ -22,7 +22,18 @@ int main()
 
 	// 평가되지 않은 표현식(unevaluated expression)
 	// 어떤 표현식이 "실행"되지는 않고 "컴파일시간"에만 사용되는 것
+
+	// C++에는 4개의 평가되지 않은 표현식이 있습니다.
+	int n6 = sizeof( foo(1, 2) ); // foo(1,2)의 결과의 크기
+	decltype(foo(1, 2)) n;        // foo(1,2)의 결과의 타입
+	const type_info& t = typeid(foo(1, 2)); // 
+
+	bool b = noexcept( foo(1, 2) ); // 함수가 예외가 있는지 조사
+									// 함수 선언문 뒤에 noexcept 가 붙었는지 조사
 }
+// noexcept
+// 1. 함수 뒤에 붙여서 예외가 없음을 알릴때
+// 2. 특정 함수 가 예외가 있는지 조사
 
 
 
