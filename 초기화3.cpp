@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <initializer_list>
 class Point
 {
@@ -26,5 +27,9 @@ int main()
 	// 왜..!! STL을 아래 처럼 사용하게 해주고 싶었다.
 	std::vector<int> v1{ 1,2,3,4,5,6,7,8,9,10 }; // ok
 	std::vector<int> v2 = { 1,2,3,4,5,6,7,8,9,10 }; // ok
+
+	// 주의!! 아래 2줄의 차이점은 반드시 알아야 합니다.
+	std::vector<int> v3( 10, 2 );
+	std::vector<int> v4{ 10, 2 };
 }
 
