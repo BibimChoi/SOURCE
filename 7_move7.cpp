@@ -30,6 +30,7 @@ public:
 		std::cout << "사용자가 만든 복사 생성자" << std::endl;
 	}
 	Object(Object&&) = default; // 모든 멤버를 move로 옮기는 기본 버전을 제공해 달라
+	Object& operator=(Object&&) = default; // move 대입도 요청
 	*/
 	Object(Object&& obj) : name(std::move(obj.name))
 	{
