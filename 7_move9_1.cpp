@@ -2,6 +2,10 @@
 #include "cppmaster.h"
 using namespace std;
 
+//void f1() noexcept       {} // 예외가 없다.
+//void f1() noexcept(true) {} // 예외가 없다.
+//void f1() noexcept(false) {} // 예외가 있을수 있다.
+
 class Data
 {
 	std::string name;
@@ -13,7 +17,8 @@ public:
 
 	// 아래 move 생성자는 예외가 없을까 ?
 
-	Data(Data&& d) noexcept : name(std::move(d.name))  { }
+	Data(Data&& d) noexcept(  std::is_nothrow_move_constructible_v<std::string> )
+		: name(std::move(d.name))  { }
 
 
 
