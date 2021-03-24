@@ -14,11 +14,11 @@ public:
 //				C++ 표준에 이미 있습니다.
 template<typename T> T declval();
 
-
+// T.resize() : Test.resize()
+// declval<T>().resize()
 //template<typename T> int  check(decltype(T().resize())* p);
 
 template<typename T> int  check(decltype(std::declval<T>().resize())* p);
-
 
 
 
