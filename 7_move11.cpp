@@ -22,7 +22,14 @@ public:
 	// void setData(Data d) { data = d; }
 
 	// 2. const lvalue reference : C++98 시절에 최선의 코드!!! 아주 널리 사용
+//	void setData(const Data& d) { data = d; } // 항상 복사
+//	void setData(const Data& d) { data = std::move(d); } // 역시 항상 복사, const 객체
+
+	// 3. C++11 에서의 최선의 코드 - 2개의 setter를 만들어라
+	// "복사생성자 와 move 생성자"를 만드는 것 처럼
+	// "복사 setter"와 "move setter"를 각각 만들어라
 	void setData(const Data& d) { data = d; }
+	void setData(Data&& d)      { data = std::move(d); }
 };
 
 int main()
