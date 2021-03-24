@@ -24,6 +24,14 @@ int main()
 	Data d3 = std::move(d1); // 무조건 move 생성자 사용
 	Data d4 = std::move_if_noexcept(d2); // move 생성자에 예외가 없을때만 move 사용
 										// 예외가능성이 있으면 복사생성자 사용
+/*
+	if (std::is_nothrow_move_constructible_v<decltype(d2)>)
+		return std::move(d2);
+	else
+		return d2;
+*/
+
+			
 
 
 	std::vector<Data> v(5);
