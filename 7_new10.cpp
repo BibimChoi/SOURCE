@@ -65,8 +65,32 @@ public:
 
 			// 아래 코드 문제점
 			// 1. T 타입에 디폴트 생성자가 필요 하다
-			// 2. 
-			T* temp = new T[newSize];
+			// 2. 생성자가 호출되는 표현이므로, 각요소의 자원도 할당됨..
+			//    하지만, 결국 기존 버퍼의 내용을 덮어 쓰게된다. 
+			// T* temp = new T[newSize];
+
+			// T* temp = static_cast<T*>(operator new(sizeof(T) * newSize)); // 이렇게 해야 한다!
+			
+			T* temp = ax.allocate(newSize);
+
+			// 기존 버퍼의 객체는 신규 버퍼로 이동한다.
+			for (int i = 0; i < size; i++)
+			{
+				//new(&temp[i]) T(buff[i]);  // 복사 생성자
+				//new(&temp[i]) T(std::move(buff[i]));  // move 생성자
+				//new(&temp[i]) T(std::move_if_noexcept(buff[i]));  
+
+				std::allocator_traits<Ax>::construct(ax, &temp[i], std::move_if_noexcept(buff[i]));
+			}
+
+			// 새로운 공간은 resize 인자로 전달된 객체로 초기화
+			for (int i = size; i < newSize; i++)
+			{
+				std::allocator_traits<Ax>::construct(ax, &temp[i], value);
+			}
+			size = newSize;
+			capacity = newSize;
+
 		}
 		else
 		{
