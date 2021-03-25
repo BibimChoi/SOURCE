@@ -5,6 +5,9 @@ void goo(char* p) {}
 
 // nullptr 의 원리
 // 1. boost 라이브러리 팀에서 아래 처럼 만들어서 사용
+// 2. C++11 에서는 "nullptr" 이 키워드로 승격..
+//    "false" 도 키워드 이고 literal , 타입은 "bool"
+//    "nullptr" 키워드 이고 literal, 타입 "nullptr_t"
 struct nullptr_t
 {
 	// 변환 연산자 : 객체가 다른 타입으로 암시적 변환 될때 호출.
