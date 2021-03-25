@@ -22,13 +22,6 @@ template<typename T> struct LogAlloc
 		std::cout << sz << "개의 메모리 해지" << std::endl;
 		free(p);
 	}
-	void destroy(T* p) { p->~T(); }
-
-	template<typename ... Ts>
-	void construct(T* p, Ts&& ... args)
-	{
-		new(p) T(std::forward<Ts>(args)...);
-	}
 
 	using value_type = T;
 	LogAlloc() = default;
@@ -41,9 +34,14 @@ int main()
 
 	Point* p1 = ax.allocate(1); 
 
-	ax.construct(p1, 1, 2);		
+//	ax.construct(p1, 1, 2);		
+//	ax.destroy(p1);				
 
-	ax.destroy(p1);				
+	// ax 에 construct 가 있으면 사용, 없으면 디폴트 제공 
+	std::allocator_traits<LogAlloc<Point>>::construct(ax, p1, 1, 2);
+	std::allocator_traits<LogAlloc<Point>>::destroy(ax, p1);
 
 	ax.deallocate(p1, 1);		
 }
+
+
