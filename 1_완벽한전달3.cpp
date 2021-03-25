@@ -18,6 +18,7 @@ int main()
 {
 	hoo(10); // ok
 	chronometry(hoo, 10); // error  <<==== 여기서 에러가 나는 것이 문제
+						// 원인과 해결책은 다음소스에서..
 
 
 	int n = 10;
