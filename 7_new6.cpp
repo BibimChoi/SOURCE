@@ -1,4 +1,6 @@
-﻿#include "cppmaster.h"
+﻿#define _SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING
+
+#include "cppmaster.h"
 
 class Point
 {
