@@ -26,7 +26,7 @@ template<typename F, typename T> void chronometry(F f, T&& arg)
 
 	f( std::forward<T>(arg) ); // std::forward 함수가 결국 위와 같은 캐스팅을 수행합니다.
 
-	std::move(arg); // arg를 무조건 rvalue로 캐스팅
+//	std::move(arg); // arg를 무조건 rvalue로 캐스팅
 		
 //	std::forward : static_cast<T&&>(arg);
 //	std::move    : static_cast<remove_reference_t<T>&&>(arg); 
