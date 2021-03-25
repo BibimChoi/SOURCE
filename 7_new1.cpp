@@ -23,7 +23,13 @@ int main()
 	// delete p1;
 
 	// 1. 메모리만 할당
-	Point* p1 = operator new(sizeof(Point));
+	Point* p1 = static_cast<Point*>(operator new(sizeof(Point))); // malloc(sizeof(Point))
+
+	// 2. 할당된 메모리에 생성자 호출
+	new(p1) Point(1, 2);
+
+	// 3. 메모리 해지 없이 소멸자 호출
+	p1->~Point();
 
 	// 4. 메모리만 해지
 	operator delete(p1);
