@@ -17,6 +17,9 @@ int main()
 	std::vector<int> v(10, 3);
 
 	v.resize(7);  // 이 순간의 원리를 생각해 봅시다.
+
+	std::cout << v.size() << std::endl;    // 7
+	std::cout << v.capacity() << std::endl;// 10
 }
 
 
