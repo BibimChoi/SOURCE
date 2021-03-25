@@ -26,10 +26,12 @@ int main()
 	Point* p1 = static_cast<Point*>(operator new(sizeof(Point))); // malloc(sizeof(Point))
 
 	// 2. 할당된 메모리에 생성자 호출
-	new(p1) Point(1, 2);
+	new(p1) Point(1, 2);	// "placement new" 라고 부릅니다.
+							// C++20: std::construct_at( p1, 1, 2)
 
 	// 3. 메모리 해지 없이 소멸자 호출
-	p1->~Point();
+	p1->~Point();		//  C++17 : std::destroy_at( p1 ); 
+
 
 	// 4. 메모리만 해지
 	operator delete(p1);
