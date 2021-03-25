@@ -10,7 +10,7 @@ template<typename T, typename U> struct PAIR
 
 	template<typename A, 
 		     typename B,
-			 typename = std::enable_if_t< std::is_convertible_v<A, T> && std::is_convertible_v<B, U> >>
+			 typename = std::enable_if_t< std::is_same_v<A, T> && std::is_same_v<B, U> >>
 	PAIR(A&& a, B&& b) : first(std::forward<A>(a)), second(std::forward<B>(b))
 	{
 	}
