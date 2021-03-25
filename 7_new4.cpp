@@ -24,14 +24,41 @@ public:
 		buff = static_cast<T*>(operator new(sizeof(T)*sz));
 
 		// 2. 생성자 호출
-		for (int i = 0; i < sz; i++)
+		int cnt = 0;
+		try
 		{
-			// new(&buff[i]) T; // 디폴트 생성자 호출
-			new(&buff[i]) T(value); // ok.. 복사 생성자 사용
+			for (int i = 0; i < sz; i++)
+			{
+				// new(&buff[i]) T; // 디폴트 생성자 호출
+				new(&buff[i]) T(value); // ok.. 복사 생성자 사용
+				++cnt;
+			}
 		}
+		catch (...)
+		{	
+			// 생성자호출에 성공한 객체는 소멸자를 호출해야 한다
+			for (int i = 0; i < cnt; i++)
+				buff[i].~T();
 
+			operator delete(buff);
+			buff = nullptr;
+			size = 0;
+			capacity = 0;
+		}
 	}
-	~vector() {}
+	~vector()
+	{
+		if (buff)
+		{
+			for (int i = 0; i < size; i++)
+				buff[i].~T();
+
+			operator delete(buff);
+			buff = nullptr;
+			size = 0;
+			capacity = 0;
+		}
+	}
 };
 int main()
 {
