@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional> // std::invoke()
 
 class Test
 {
@@ -13,9 +14,10 @@ public:
 template<typename F, typename ... Ts>
 decltype(auto) chronometry(F f, Ts&& ... args)
 {
-	return f(std::forward<Ts>(args)...);
+	return std::invoke(f, std::forward<Ts>(args)...);
 }
-
+// /std:c++latest
+// -std=c++17
 
 int main()
 {
