@@ -9,6 +9,11 @@ public:
 	~Point() {}
 };
 
+// "Generic Container" 라는 이름의 "C++ IDioms"
+// 컨테이너 설계시 타입이 가져야 하는 조건을 최소화 하라!!!
+// 디폴트 생성자가 없어도 컨테이너 담을수 있어야 한다.
+
+// 아래 vector에 담는 타입은 최소한 "복사 생성자"만 있으면 된다.
 template<typename T> class vector
 {
 	T* buff;
