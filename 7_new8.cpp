@@ -1,6 +1,14 @@
 #include <vector>
 #include <iostream>
 
+class Point
+{
+	int x;
+	int y;
+public:
+	Point(int a, int b) : x(a), y(b) {}
+	~Point() {}
+};
 
 template<typename T> struct LogAlloc
 {
@@ -29,14 +37,13 @@ template<typename T> struct LogAlloc
 
 int main()
 {
-	std::allocator<Point> ax; // Point 타입의 메모리 할당기!
-						// 표준 할당기는 "operator new()", "operator delete()" 사용
+	LogAlloc<Point> ax;
 
-	Point* p1 = ax.allocate(1); // Point 한개 할당
+	Point* p1 = ax.allocate(1); 
 
-	ax.construct(p1, 1, 2);		// 생성자 호출
+	ax.construct(p1, 1, 2);		
 
-	ax.destroy(p1);				// 소멸자 호출
+	ax.destroy(p1);				
 
-	ax.deallocate(p1, 1);		// 메모리 해지
+	ax.deallocate(p1, 1);		
 }
