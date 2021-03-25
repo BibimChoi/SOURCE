@@ -16,12 +16,13 @@ template<typename T, typename U> struct PAIR
 
 	// C++11 부터 사용되는 전형적인 모양의 생성자
 	template<typename A, typename B> 
-	PAIR(A&& a, B&& b)
+	PAIR(A&& a, B&& b) :  first( std::forward<A>(a) ), second( std::forward<B>(b) )
 	{
 		// 다음중 맞는 것은 ?
-		first = a;
-		first = std::move(a);
-		first = std::forward(a);
+//		first = a;				// 무조건 "복사"
+//		first = std::move(a);	// 무조건 "rvalue" 캐스팅 이므로, "항상 move"
+//		first = std::forward(a);// 생성자 인자를 어떻게 보냈느냐에 따라 다른 캐스팅	
+								// 정답
 	}
 };
 
