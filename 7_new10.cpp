@@ -56,10 +56,42 @@ public:
 			capacity = 0;
 		}
 	}
+
+	void resize(std::size_t newSize, const T& value = T())
+	{
+		if (newSize > capacity)
+		{
+			// 메모리 할당 필요
+
+			// 아래 코드 문제점
+			// 1. T 타입에 디폴트 생성자가 필요 하다
+			// 2. 
+			T* temp = new T[newSize];
+		}
+		else
+		{
+			// 메모리할당 필요 없다.
+		}
+
+	}
 };
+
+
+
+
 int main()
 {
 	vector<Point> v(10, Point(1, 2));
 
 	v.resize(15, Point(0, 0));
 }
+
+
+
+
+
+
+
+
+
+// 내일 최종 평가 : swmooc.lge.com  에서 4시정도 부터 진행합니다.
