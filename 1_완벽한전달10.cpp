@@ -4,7 +4,7 @@
 template<typename F, typename ... Ts>
 decltype(auto) chronometry(F&& f, Ts&& ... args)
 {
-	return std::invoke(f, std::forward<Ts>(args)...);
+	return std::invoke( std::forward<F>(f), std::forward<Ts>(args)...);
 }
 
 struct Add
@@ -14,7 +14,6 @@ struct Add
 		std::cout << "lvalue °´Ã¼" << std::endl;
 		return a + b;
 	}
-
 	int operator()(int a, int b) const &&
 	{
 		std::cout << "rvalue °´Ã¼" << std::endl;
@@ -24,11 +23,16 @@ struct Add
 
 int main()
 {
-	Add add;
-	add(1, 2);
+	Add add2;
+	chronometry(add2, 1, 2); // lvalue ÀÇ () &
+	chronometry(Add(), 1, 2);// rvalue ÀÇ () &&
 
-	Add()(1, 2);
+
+//	Add add;
+//	add(1, 2);
+//	Add()(1, 2);
 }
+
 
 
 
