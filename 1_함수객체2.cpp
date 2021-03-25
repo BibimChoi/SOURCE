@@ -7,9 +7,9 @@ void Sort(int* x, int sz, bool(*cmp)(int, int) )
 	{
 		for (int j = i + 1; j < sz; j++)
 		{
-			//if (x[i] > x[j])  
+			//if (x[i] > x[j])        // 1
 
-			if ( cmp(x[i], x[j]) )
+			if ( cmp(x[i], x[j]) )    // 2
 				std::swap(x[i], x[j]);
 		}
 	}
