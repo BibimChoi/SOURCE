@@ -10,16 +10,20 @@ void* operator new(std::size_t sz)
 
 // 문자열을 읽기만 하려면 string_view 를 사용해라!
 //void foo(std::string s) // 복사본 생성
-//void foo(std::string_view s) // 가장 좋은 표기법
-void foo(const std::string& s)
+void foo(std::string_view s) // 가장 좋은 표기법
+//void foo(const std::string& s)
 {
+	s[0] = 'a'; // error..!
 }
 
 int main()
 {
-	std::string s1 = "abcdefghijklmnopqrstrlksjflsjlsjflskf";
+//	std::string s1 = "abcdefghijklmnopqrstrlksjflsjlsjflskf";
+//	foo(s1);
 
-	foo(s1);
+	// string 객체가 아닌, 그냥 문자열만 전달할때 가 핵심..
+	foo("sdfjsldjflsfjsdkfjsldkjflsdfjdskfjlsdflskdjflskfdjlsk");
+
 
 //	std::string s2 = s1;
 //	std::string_view s3 = s1;
