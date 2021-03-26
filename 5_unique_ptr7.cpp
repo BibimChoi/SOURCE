@@ -105,7 +105,14 @@ public:
 		mData.getFirst()(mData.getSecond());
 	}
 	inline T* operator->() { return mData.getSecond(); }
-	inline T& operator*() { return *mData.getSecond(); }
+
+	// 배열 버전은 * 연산은 지원하지 말고 [] 연산을 지원 한다.
+	//inline T& operator*() { return *mData.getSecond(); }
+
+	inline T& operator[](int idx) { return mData.getSecond()[idx]; }
+
+
+
 	unique_ptr(const unique_ptr&) = delete;
 	unique_ptr& operator=(const unique_ptr&) = delete;
 
@@ -122,20 +129,17 @@ public:
 	}
 };
 
-
-
 int main()
 {
 	unique_ptr<int>   up1(new int);      
 	unique_ptr<int[]> up2(new int[100]); 
 
 	// 아래 코드들이 되는게 좋은지 안되는 것이 좋은 지 생각해 보세요
-	*up1   = 10;
-	up1[0] = 10;
+	*up1   = 10; // ok.
+//	up1[0] = 10; // error
 
-	*up2   = 10;
-	up2[0] = 10;
-
+//	*up2   = 10; // error
+	up2[0] = 10; // ok. 
 }
 
 
