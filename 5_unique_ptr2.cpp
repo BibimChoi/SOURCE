@@ -46,8 +46,18 @@ int main()
 	// unique_ptr<int> p1( static_cast<int*>(malloc(100)), free ) ;
 
 	// 
-	unique_ptr<int> p1(new int); // default_delete<int> 사용, 즉, delete 
+	unique_ptr<int>        p1(new int); // default_delete<int> 사용, 즉, delete 
 	unique_ptr<int, Freer> p2(static_cast<int*>(malloc(100))); // 삭제자 변경 
+
+	// shared_ptr vs unique_ptr
+
+	std::shared_ptr<int> sp1(new int); 
+	std::shared_ptr<int> sp2(static_cast<int*>(malloc(100)), free);
+
+	// 삭제자가 다르면
+	// shared_ptr은 서로 같은 타입이다.
+	// unique_ptr은 서로 다른 타입이다.
+
 }
 
 
