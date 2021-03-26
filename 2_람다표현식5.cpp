@@ -16,6 +16,9 @@ int main()
 
 	// 캡쳐를 안하면
 	auto f3 = [](int a, int b) {return a + b; };
+			  // class xxx{}; xxx();
 
-	decltype(f3) f4; // ??
+	decltype(f3) f4; // C++20 이전에는 안되지만, C++20 부터 가능합니다.
+					// 캡쳐하지 않은 람다만 디폴트 생성이 가능합니다.
+	// xxx f4;
 }
