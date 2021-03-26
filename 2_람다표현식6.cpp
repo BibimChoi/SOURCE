@@ -19,4 +19,19 @@ int main()
 	f(1, 2);
 	f(3.4, 2.1);
 	f(3.4, 2);
+
+	// swap 을 람다로 만들어 봅시다.
+	auto f2 = [](auto& a, auto& b) { auto tmp = a; a = b; b = tmp; };
+
+	int n = 10;
+	double d = 3.4;
+	f2(n, d); // ??? 되는게 좋을까요 ? 안되는게 좋을까요 ?
 }
+
+
+
+
+
+
+
+
