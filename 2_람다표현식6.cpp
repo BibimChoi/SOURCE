@@ -20,8 +20,15 @@ int main()
 	f(3.4, 2.1);
 	f(3.4, 2);
 
+
 	// swap 을 람다로 만들어 봅시다.
-	auto f2 = [](auto& a, auto& b) { auto tmp = a; a = b; b = tmp; };
+	//auto f2 = [](auto& a, auto& b) { auto tmp = a; a = b; b = tmp; };
+	//auto f2 = [](auto& a, decltype(a)& b) { auto tmp = a; a = b; b = tmp; };
+	//           int& a, int& b
+
+	// C++20 의 template 람다
+	auto f2 = []<typename T>(T& a, T& b) { auto tmp = a; a = b; b = tmp; };
+
 
 	int n = 10;
 	double d = 3.4;
