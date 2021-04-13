@@ -1,1 +1,5 @@
-1_OOP1.cpp 
+void Add(int ar, int ai, int br, int bi)		
+{
+	ar + br;
+	ai + bi;
+}
