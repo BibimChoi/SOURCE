@@ -1,0 +1,118 @@
+// github.com/codenuri/source 에 가면 shape1 있습니다.-복사해서사용하세요
+
+#include <iostream>
+#include <vector>
+
+// 5. OCP 와 다형성
+//    다형성(가상함수)기반의 코딩 스타일은 OCP를 만족하는 좋은 코딩 스타일 입니다.
+
+// 6. Prototype 디자인 패턴 - 기존에 존재하는 객체의 복사본을 가지고
+//							새로운 객체를 만드는 기법
+//							Clone() 가상함수
+//							java에는 clone() 함수가 있습니다.
+//							swift 에는 copy()함수가 있습니다.
+
+// 디자인패턴 : 자주 사용되는 코딩 패턴에 이름을 부여 한것.
+
+
+class Shape
+{
+public:
+	int type;
+	virtual void Draw() { std::cout << "Draw Shape" << std::endl; }
+
+	// 자신의 복사본을 만드는 가상함수는 항상 유용합니다.!!
+	virtual Shape* Clone() { return new Shape(*this); }
+};
+
+class Rect : public Shape
+{
+public:
+	Rect() { type = 1; }
+	void Draw() override { std::cout << "Draw Rect" << std::endl; }
+
+	Shape* Clone() override { return new Rect(*this); }
+};
+class Circle : public Shape
+{
+public:
+	Circle() { type = 2; }
+	void Draw() override { std::cout << "Draw Circle" << std::endl; }
+	Shape* Clone() override { return new Circle(*this); }
+};
+
+// Circle c;
+// Circle* p1 = new Circle(); // 새로운 원
+// Circle* p2 = new Circle(c); // c와 동일한 원
+
+
+class Triangle : public Shape
+{
+public:
+	void Draw() override { std::cout << "Draw Triangle" << std::endl; }
+	Shape* Clone() override { return new Triangle(*this); }
+};
+
+int main()
+{
+	std::vector<Shape*> v;
+
+	while (1)
+	{
+		int cmd;
+		std::cin >> cmd;
+
+		if      (cmd == 1) v.push_back(new Rect);
+		else if (cmd == 2) v.push_back(new Circle);
+
+
+
+		else if (cmd == 8)
+		{
+			std::cout << "몇번째 도형을 복사할까요 >> ";
+			int k;
+			std::cin >> k;
+
+			// k번째 도형의 복사본을 만들어서 v 에 추가합니다.
+			// 어떻게 해야 할까요 ?
+			// k번째 도형이 뭘까요 ?
+			// 
+			v.push_back( v[k]->Clone() ); // 다형성!!!!
+											// k번째 도형이 뭔지 조사할 필요
+											// 없습니다.
+
+
+			// 아래 처럼 만들면 새로운 도형이 추가될때
+			// 코드가 수정되어야 합니다. OCP 를 만족할수 없습니다.
+			/*
+			switch (v[k]->type)
+			{
+			case 1: v.push_back(new Rect(*v[k])); break;
+			case 2: v.push_back(new Circle(*v[k])); break;
+			}
+			*/
+
+		}
+
+
+
+
+		else if (cmd == 9)
+		{
+			for (auto p : v)
+				p->Draw(); // 다형성(Polymorphism)
+						// 동일한 함수를 호출하는 표현식이
+						// 상황(객체의 종류)에 따라 다르게 동작하는것
+
+			// OOP 3가지 특징 : 캡슐화, 상속, 다형성,
+		}
+	}
+}
+
+
+
+
+
+
+
+
