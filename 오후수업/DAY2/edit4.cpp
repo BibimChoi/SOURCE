@@ -48,9 +48,26 @@ public:
 	}
 };
 
+// 이제 다양한 종류의 Validator를 제공하면 됩니다.
+class LimitDigitValidator : public IValidator
+{
+	int size;
+public:
+	LimitDigitValidator(int s) : size(s) {}
+
+	bool validate(std::string s, char c) override
+	{
+		return s.size() < size && isdigit(c);
+	}
+};
+
 int main()
 {
 	Edit e;
+
+	LimitDigitValidator v(5); // 값의 유효성을 확인하는 객체를 생성후
+	e.setValidator(&v);       // edit 와 연결
+	
 	while (1)
 	{
 		std::cout << e.getData() << std::endl;
