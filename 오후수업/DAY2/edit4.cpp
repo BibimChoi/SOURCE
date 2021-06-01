@@ -59,6 +59,10 @@ public:
 	{
 		return s.size() < size && isdigit(c);
 	}
+	bool iscomplete(std::string s) override
+	{
+		return s.size() == size;
+	}
 };
 
 int main()
