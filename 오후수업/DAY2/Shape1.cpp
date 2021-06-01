@@ -24,20 +24,39 @@
 #include <vector>
 
 // 1. 모든 도형을 타입으로 설계하면 편리하다.
+
 // 2. 공통의 기반 클래스가 있다면 모든 도형을 묶어서 관리할수 있다.
+
+// 3. 모든 도형의 공통의 특징은 "반드시 기반 클래스에도 있어야 한다."
+//    그래야, 기반 클래스 포인터로 묶어서 사용할때 해당 기능을 사용할수 있다
+
+// 4. 기반 클래스 함수중에서 파생 클래스가 재정의 하게 되는 것은 반드시 가상함수로 해야 한다.
+
+//	  가상함수가 아닌 함수는 재정의 하지 말라! - effective - C++ 서적에 있는 격언
+
+
 class Shape
 {
+public:
+	virtual void Draw() { std::cout << "Draw Shape" << std::endl; }
 };
+
+
 class Rect : public Shape
 {
 public:
-	void Draw() { std::cout << "Draw Rect" << std::endl; }
+	void Draw() override { std::cout << "Draw Rect" << std::endl; }
 };
+
+
 class Circle : public Shape
 {
 public:
-	void Draw() { std::cout << "Draw Rect" << std::endl; }
+	void Draw() override { std::cout << "Draw Circle" << std::endl; }
 };
+
+
+
 int main()
 {
 	std::vector<Shape*> v;
@@ -56,4 +75,5 @@ int main()
 		}
 	}
 }
-// 위 코드는 왜 에러일까요 ?
+// github.com/codenuri/SOURCE 에서 소스 계속 update 해 놓겠습니다.
+// 오후수업/DAY2/Shape1.cpp 에 지금 소스 있습니다.
