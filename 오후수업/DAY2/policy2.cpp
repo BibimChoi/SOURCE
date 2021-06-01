@@ -1,4 +1,6 @@
 // 방법 1. 변하는 코드는 가상함수로 ( template method )
+// => 동기화 정책은 List 뿐아니라 vector, map 등도 필요 하다!!! 
+// => 아래 처럼 하면 재사용할수 없다
 template<typename T> class List
 {
 public:
