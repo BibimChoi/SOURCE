@@ -68,5 +68,11 @@ int main()
 
 
 
+// C언어의 "Call Back" 함수를 C++로 구현하는 경우 반드시 static 멤버함수로 해야 합니다.
+// 그런데, static 멤버함수는 this가 없으므로 다른 멤버 접근이 안됩니다.
 
+// static 멤버 에서 this를 사용하려면 아래 2가지 방법이 널리 사용됩니다.
+// 1. call back 함수의 인자로 this 전달 - CreateThread(0,0, foo, this, 0, 0)
+
+// 2. this를 자료구조에 보관 - Clock 예제
 
