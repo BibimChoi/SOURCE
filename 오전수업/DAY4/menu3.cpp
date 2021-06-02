@@ -1,4 +1,4 @@
-// 2_메뉴2
+// 2_메뉴3
 #include <iostream>
 #include <string>
 #include <vector>
@@ -42,19 +42,31 @@ public:
 	// 팝업메뉴 선택시...
 	void command() override
 	{
-		int sz = v.size(); // 하위 메뉴 갯수
-
-		for (int i = 0; i < sz; i++)
+		while (1)
 		{
-			std::cout << i + 1 << " . " << v[i]->getTitle() << std::endl;
+			system("cls");
+			int sz = v.size(); // 하위 메뉴 갯수
+
+			for (int i = 0; i < sz; i++)
+			{
+				std::cout << i + 1 << " . " << v[i]->getTitle() << std::endl;
+			}
+			std::cout << sz + 1 << ". 상위 메뉴로 이동" << std::endl;
+
+			int cmd;
+			std::cout << "메뉴를 선택해 주세요 >> ";
+			std::cin >> cmd;
+
+			if (cmd == sz + 1)  // 상위 메뉴로 이동선택
+				break; // 루프 탈출
+
+			if (cmd < 1 || cmd > sz + 1) // 잘못된 입력
+				continue;
+
+			// 선택된 메뉴를 실행합니다. 
+			v[cmd - 1]->command(); // 다형성
+								// 어떤 메뉴인지 조사할필요 없습니다.
 		}
-		std::cout << sz + 1 << ". 상위 메뉴로 이동" << std::endl;
-
-		int cmd;
-		std::cout << "메뉴를 선택해 주세요 >> ";
-		std::cin >> cmd;
-
-		// 선택된 메뉴를 실행합니다. 
 	}
 };
 
