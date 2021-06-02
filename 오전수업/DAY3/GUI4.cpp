@@ -77,18 +77,28 @@ public:
 class MyWindow : public CWnd
 {
 public:
-	DECLARE_MESSAGE_MAP()
-
 	void LButtonDown() { cout << "LBUTTON" << endl; }
 	void KeyDown()     { cout << "KEYDOWN" << endl; }
+
+	DECLARE_MESSAGE_MAP()
 };
+
 BEGIN_MESSAGE_MAP( MyWindow )
 	ADD_MESSAGE( WM_LBUTTONDOWN, &MyWindow::LButtonDown )
+	ADD_MESSAGE( WM_KEYDOWN,     &MyWindow::KeyDown)
 END_MESSAGE_MAP()
 
+// GUI 이벤트는 1000개 이상입니다. 
+// 이벤트를 가상함수 기반으로 처리하면 "가상함수 테이블"의 오버헤드가 있습니다.
+// 그래서 위처럼 하는 경우가 많이 있었습니다 - MFC, wxWidget 이 대표적으로 이기술 사용
+// 요즘에는 "메모리가 충분해서 가상함수도 많이 사용"
 
+// 구글에서 "wxWidget event table" 검색해 보세요  - 1번째 링크
 
+// C++ 기반 GUI 라이브러리
+// MFC, QT, wxWidget 등.. 문제점.. 너무오래 되었다.(1990년대 나온것들 )
 
+// 최신 라이브러리로 "nana" 라는 GUI 도구가 있습니다.
 
 int main()
 {
