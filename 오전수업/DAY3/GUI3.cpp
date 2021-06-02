@@ -71,12 +71,14 @@ public:
 
 		static AFX_MSG arr[] = {
 			{ WM_LBUTTONDOWN, static_cast<HANDLER>(&MyWindow::LButtonDown)},
+			{ WM_KEYDOWN,     static_cast<HANDLER>(&MyWindow::KeyDown)},
 			{ 0, 0}
 		};
 		return arr;
 	}
 
 	void LButtonDown() { cout << "LBUTTON" << endl; }
+	void KeyDown()     { cout << "KEYDOWN" << endl; }
 };
 
 
