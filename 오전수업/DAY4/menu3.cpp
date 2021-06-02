@@ -70,14 +70,22 @@ public:
 	}
 };
 
-
-
-
-
 int main()
 {
-	MenuItem m1("색상변경", 11);  
-	m1.command();  
+	PopupMenu* menubar = new PopupMenu("MENUBAR");
+	PopupMenu* p1 = new PopupMenu("색상 변경");
+	PopupMenu* p2 = new PopupMenu("해상도 변경");
+
+	menubar->addMenu(p1);
+	menubar->addMenu(p2);
+
+	p1->addMenu(new MenuItem("RED",   11));
+	p1->addMenu(new MenuItem("GREEN", 12));
+	p1->addMenu(new MenuItem("BLUE",  13));
+
+	p2->addMenu(new MenuItem("HD",  21));
+	p2->addMenu(new MenuItem("FHD", 22));
+	p2->addMenu(new MenuItem("UHD", 23));
 }
 
 
