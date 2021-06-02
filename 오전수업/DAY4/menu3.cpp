@@ -42,7 +42,19 @@ public:
 	// 팝업메뉴 선택시...
 	void command() override
 	{
+		int sz = v.size(); // 하위 메뉴 갯수
 
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i + 1 << " . " << v[i]->getTitle() << std::endl;
+		}
+		std::cout << sz + 1 << ". 상위 메뉴로 이동" << std::endl;
+
+		int cmd;
+		std::cout << "메뉴를 선택해 주세요 >> ";
+		std::cin >> cmd;
+
+		// 선택된 메뉴를 실행합니다. 
 	}
 };
 
