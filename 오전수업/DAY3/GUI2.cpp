@@ -3,6 +3,19 @@
 #include <map>
 #include <vector>
 
+// 책임의 전가 패턴( chain of responsibility ) - GoF 의 23개 패턴중 한개
+
+
+// 발생된 사건을 처리할 객체를 만날때 까지 고리(chain)에 따라 사건(event)를 전달한다.
+
+// IOS 에서는 자식 윈도우 이벤트를 처리하지 않으면 부모윈도우에 전달된다.
+// IOS(Cocoa) "responder chain" 이라고 부릅니다
+
+
+// MFC에서는 메뉴 선택시 Document->View->Frame->App 클래스 순으로 메뉴 이벤트 처리권한이
+// 있다 - "명령 라우팅(command routing)" 라고 합니다.
+
+
 class CWnd;
 map<int, CWnd*> this_map;
 
