@@ -63,8 +63,24 @@ public:
 class MyWindow : public CWnd
 {
 public:
+	// 라이브러리 사용자는 아래 가상함수를 재정의해서
+	// 메세지 처리 정보를 담은 배열을 반환해야 합니다.
+	AFX_MSG* GetMessageMap() override
+	{
+		typedef void(CWnd::*HANDLER)(); // 멤버 함수 포인터 타입
+
+		static AFX_MSG arr[] = {
+			{ WM_LBUTTONDOWN, static_cast<HANDLER>(&MyWindow::LButtonDown)},
+			{ 0, 0}
+		};
+		return arr;
+	}
+
 	void LButtonDown() { cout << "LBUTTON" << endl; }
 };
+
+
+
 
 int main()
 {
