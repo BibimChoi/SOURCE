@@ -1,4 +1,4 @@
-// 2_메뉴3
+// 2_메뉴2
 #include <iostream>
 #include <string>
 #include <vector>
@@ -49,7 +49,7 @@ public:
 
 			for (int i = 0; i < sz; i++)
 			{
-				std::cout << i + 1 << " . " << v[i]->getTitle() << std::endl;
+				std::cout << i + 1 << ". " << v[i]->getTitle() << std::endl;
 			}
 			std::cout << sz + 1 << ". 상위 메뉴로 이동" << std::endl;
 
@@ -86,6 +86,14 @@ int main()
 	p2->addMenu(new MenuItem("HD",  21));
 	p2->addMenu(new MenuItem("FHD", 22));
 	p2->addMenu(new MenuItem("UHD", 23));
+
+	// 메뉴를 시작하려면 ??
+	menubar->command();
 }
+
+
+
+
+
 
 
