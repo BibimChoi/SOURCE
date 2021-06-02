@@ -3,6 +3,19 @@
 #include <map>
 #include <vector>
 
+// 책임의 전가(Chain of responsibility) 패턴
+
+// 사건(event) 발생시, 처리할수 있는 객체를 만날때 까지 고리(chain)에 따라 이동한다.
+
+// IOS(cocoa) 라이브러리에서 윈도우 클릭시, 처리되지 않은 이벤트는 부모윈도우로 이동
+
+//	"Responder Chain" 이라고 부릅니다.
+
+// MFC 에서는 "메뉴 선택시" 이벤트를 4곳에서 처리 가능합니다.
+// Document => View => Frame => App
+// "명령 라우팅(Command routing)" 이라고 합니다.
+
+
 class CWnd;
 map<int, CWnd*> this_map;
 
