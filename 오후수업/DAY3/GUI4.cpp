@@ -89,6 +89,20 @@ BEGIN_MESSAGE_MAP(MyWindow)
 END_MESSAGE_MAP()
 
 
+// WM_KEYDOWN 과 KeyDown연결해 보세요
+
+// 구글에서 "wxWidget event table" 검색해 보세요, 1번째 링크
+
+// C++ 의 대표적 GUI 라이브러리 - 이벤트 처리시 가상함수 방식의 오버헤드
+//								자신들만의 이벤트 처리 기술 제공
+// QT       : 대부분의 모든 OS지원,  signal / slot
+// wxWidget : 대부분의 모든 OS지원,  위 코드와 유사한 기술
+// MFC      : windows os 전용       위 코드와 유사한 기술
+
+// 단점, 위 3개가 너무 오래된 라이브러리(1990년대 탄생)
+// 최신 C++ GUI 라이브러리가 없다!!!( "nana" 라는것이 있지만....)
+
+// C++23 에서 2D 그래픽라이브러리가 표준에 들어올 예정
 
 
 int main()
