@@ -68,6 +68,7 @@ class MyWindow : public CWnd
 {
 public:
 	void LButtonDown() { cout << "LBUTTON" << endl; }
+	void KeyDown()     { cout << "KEYDOWN" << endl; }
 
 	// 라이브러리 사용자는 GetMessageMap() 재정의 해서
 	// event table 주소 반환하면 됩니다.
@@ -77,6 +78,7 @@ public:
 
 		static AFX_MSG arr[] = {
 			{ WM_LBUTTONDOWN, static_cast<HANDLER>(&MyWindow::LButtonDown)},
+			{ WM_KEYDOWN,     static_cast<HANDLER>(&MyWindow::KeyDown)},
 			{0, 0}
 		};
 
