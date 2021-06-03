@@ -55,6 +55,12 @@ public:
 };
 //-----------------------------------------------------
 // 메뉴 이벤트 처리 방법 1. 변하는 것을 가상함수로!
+// => 메뉴는 수십~수백개가 될수 있다.
+// => 이 디자인은 파생 클래스의 갯수가 너무 많아 진다.
+
+// 어제 배운 GUI의 경우도 가상함수로 처리하는 버전이 있지만
+// 주 윈도우는 1~2개 정도만 만들게 되므로.. 파생 클래스가 많아 지지 않는다.
+
 class MenuItem : public BaseMenu
 {
 	int id;
@@ -74,6 +80,7 @@ public:
 	using MenuItem::MenuItem; // 기반 클래스의 생성자를 상속해 달라.
 	void OnCommand() { std::cout << "색상을 Red 로 변경" << std::endl; }
 };
+
 class BlueMenu : public MenuItem
 {
 public:
