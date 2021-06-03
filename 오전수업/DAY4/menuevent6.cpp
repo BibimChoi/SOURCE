@@ -17,7 +17,7 @@ int main()
 	// C의 함수 포인터는 유연성이 부족해서.. 사용하기 불편 합니다.
 	void(*pf)(int) = &foo;
 	pf(10); // ok.. foo(10);
-	pf = &goo; // error. goo는 인자가 2개 입니다.
+//	pf = &goo; // error. goo는 인자가 2개 입니다.
 
 	// C++ 의 std::function 인 편리합니다.
 	// std::function<주소를 저장할 함수모양> f;
