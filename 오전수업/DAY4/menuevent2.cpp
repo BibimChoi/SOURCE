@@ -71,11 +71,13 @@ public:
 class RedMenu : public MenuItem
 {
 public:
+	using MenuItem::MenuItem; // 기반 클래스의 생성자를 상속해 달라.
 	void OnCommand() { std::cout << "색상을 Red 로 변경" << std::endl; }
 };
 class BlueMenu : public MenuItem
 {
 public:
+	using MenuItem::MenuItem;
 	void OnCommand() { std::cout << "색상을 Blue 로 변경" << std::endl; }
 };
 
