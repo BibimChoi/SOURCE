@@ -90,6 +90,9 @@ int main()
 	p2->addMenu(new MenuItem("HD",  21));
 	p2->addMenu(new MenuItem("FHD", 22));
 	p2->addMenu(new MenuItem("UHD", 23));
+	
+	// 이제 시작하려면 ?
+	menubar->command();
 }
 
 
