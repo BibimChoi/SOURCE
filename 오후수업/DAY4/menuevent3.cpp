@@ -59,7 +59,8 @@ public:
 // 메뉴 이벤트를 처리하고 싶은 모든 클래스는 아래 인터페이스를 구현해야 한다.
 struct IMenuListener
 {
-	virtual void OnCommand() = 0;
+	// 이 디자인은 반드시 OnCommand가 메뉴의 ID를 받아야 한다.
+	virtual void OnCommand(int id) = 0;
 	virtual ~IMenuListener() {}
 };
 
@@ -76,7 +77,8 @@ public:
 	void command() override
 	{
 		// 메뉴가 선택되었다는 사실을 등록된 객체에게 알려준다.
-		if (pListener) pListener->OnCommand();
+		if (pListener) pListener->OnCommand(id);
+
 	}
 };
 
@@ -85,9 +87,15 @@ public:
 class Camera : public IMenuListener
 {
 public:
-	void OnCommand() override
+
+	void OnCommand(int id) override
 	{
 		std::cout << "메뉴 핸들러 작성" << std::endl;
+
+		switch (id)
+		{
+			// id 에 따라서 기능 수행.
+		}
 	}
 };
 
