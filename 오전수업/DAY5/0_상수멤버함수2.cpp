@@ -8,8 +8,14 @@ class Rect
 public:
 	Rect(int x, int y, int w, int h) : x(x), y(y), w(w), h(h) {}
 
+	// 아래 코드는 "상수멤버함수"
+	// 상수객체일때 getArea()를 호출할수 있게 해달라는 것
 	int getArea() const { return w * h; }
+
+	// 반환값이 const라는것. 아래처럼하면 상수 객체일때는 getArea()호출 안됨
+	const int getArea() { return w * h; }
 };
+
 //void foo(Rect r)		// call by value : 복사본 의 오버헤드가 있다.
 void foo(const Rect& r) // call by value 보다 const 참조가 좋다.
 {
