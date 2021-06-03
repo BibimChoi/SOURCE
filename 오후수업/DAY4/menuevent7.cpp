@@ -94,11 +94,18 @@ int main()
 {
 	std::shared_ptr<PopupMenu> rootmenu = std::make_shared<PopupMenu>("ROOT");
 
-	std::shared_ptr<MenuItem> p1 = std::make_shared<MenuItem>("메뉴1", 11);
-	std::shared_ptr<MenuItem> p2 = std::make_shared<MenuItem>("메뉴2", 12);
-	std::shared_ptr<MenuItem> p3 = std::make_shared<MenuItem>("메뉴3", 13);
+	std::shared_ptr<MenuItem> p1 = std::make_shared<MenuItem>("메뉴1", 11, &foo);
+	std::shared_ptr<MenuItem> p2 = std::make_shared<MenuItem>("메뉴2", 12, std::bind(&goo, 12));
+	std::shared_ptr<MenuItem> p3 = std::make_shared<MenuItem>("메뉴3", 13, std::bind(&goo, 13));
 	std::shared_ptr<MenuItem> p4 = std::make_shared<MenuItem>("메뉴4", 14);
 	std::shared_ptr<MenuItem> p5 = std::make_shared<MenuItem>("메뉴5", 15);
+
+	Camera cam;
+	p4->setHandler( std::bind(&Camera::take, &cam, 1, 2) ); //메뉴 선택 : cam.take(1,2) 
+
+	p5->setHandler( []() { std::cout << "lambda event handler" << std::endl; } );
+
+
 
 	rootmenu->addMenu(p1);
 	rootmenu->addMenu(p2);
