@@ -1,8 +1,19 @@
-// 2_메뉴2
+// 2_메뉴3
 #include <iostream>
 #include <string>
 #include <vector>
 #include <conio.h> 
+
+// "Composite" 패턴
+
+// 1. "복합객체(PopupMenu) 는 개별객체(MenuItem) 뿐 아니라 복합객체 자신도 보관한다."
+//    => 복합객체와 개별객체는 공통의 기반 클래스가 필요 하다.(BaseMenu)
+
+// 2. 복합객체와 개별객체는 사용법이 동일시 된다.(선택시 모두 command() 호출)
+//    => command() 는 반드시 BaseMenu 안에 있어야 한다.
+
+// 특징 : 객체의 포함관계가 "Tree 구조"를 나타낸다.
+//		  마지막 자식이 개별객체가 된다.
 
 // 모든 메뉴의 기반 클래스
 class BaseMenu
