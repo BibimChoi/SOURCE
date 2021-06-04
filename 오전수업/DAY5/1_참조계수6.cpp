@@ -30,18 +30,25 @@ public:
 	void Go() { std::cout << "Truck Go" << std::endl; }
 };
 
+// AddRef와 Release를 자동으로 수행하는 스마트 포인터를 도입해 봅시다.
+template<typename T> class AutoPtr
+{
+	T* obj;
+public:
+	AutoPtr(T* p = nullptr)		  : obj(p) { if (obj) obj->AddRef();  }
+	AutoPtr(const AutoPtr<T>& ap) : obj(ap.obj) { if (obj) obj->AddRef(); }
+	~AutoPtr() { if (obj) obj->Release();  }
+
+	// 스마트 포인터의 기본 -> 와 * 연산자 재정의
+	T* operator->() { return obj; }
+	T& operator*()  { return *obj; }
+};
+
 int main()
 {
-	Truck* p1 = new Truck;
-	p1->AddRef();
-
-	Truck* p2 = p1;
-	p2->AddRef();
-
+	AutoPtr<Truck> p1 = new Truck; // AutoPtr<Truck> p1(new Truck)
+	AutoPtr<Truck> p2 = p1;
 	p1->Go();
-
-	p2->Release();
-	p1->Release();
 }
 
 
