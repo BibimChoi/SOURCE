@@ -23,6 +23,12 @@ public:
 												// const RefBase* => const Truck* 로 캐스팅하는 코드
 												// const 를 제거하는 것이 아니므로 
 												// static_cast 해도 된다.
+//			delete const_cast<T*>(this); // const RefBase* => Truck*
+										// const_cast는 동일타입의 상수성만 제거 가능하므로 error
+
+//			delete static_cast<T*>( const_cast<RefBase*>(this) ); // ok
+									// const RefBase*(this) => RefBase* 로 캐스팅후
+									// RefBase* =>Truck* 로 캐스팅하는 코드
 								
 	}
 
