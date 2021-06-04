@@ -39,7 +39,7 @@ int main()
 
 	// CLient 가 Proxy 사용시 약한결합(인터페이스만 사용)
 	// 으로 사용해야 합니다
-	ICalc* pCalc = ? ? ? ;
+	ICalc* pCalc = ? ? ? ; // 그런데.. 객체를 만들려면 "ICalc" 가 아닌 "Calc"가 필요 합니다.
 
 	cout << pCalc->Add(1, 2) << endl;
 	cout << pCalc->Sub(1, 2) << endl;
