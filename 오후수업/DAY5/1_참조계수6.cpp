@@ -34,11 +34,29 @@ class AutoPtr
 {
 	T* obj;
 public:
-	AutoPtr(T* p = nullptr) : obj(p) {}
-	AutoPtr(const AutoPtr<T>& ap) : obj(ap.obj) {}
-	~AutoPtr() { }
+	AutoPtr(T* p = nullptr)       : obj(p)      { if (obj) obj->AddRef();  }
+	AutoPtr(const AutoPtr<T>& ap) : obj(ap.obj) { if (obj) obj->AddRef(); }
+	~AutoPtr() { if (obj) obj->Release(); }
+
+	// 스마트 포인터의 핵심
+	// 객체라도 ->를 사용할수 있게 하기 위한 연산자 재정의
+	T* operator->() { return obj; }
+	T& operator*()  { return *obj; }
 };
 
+int main()
+{
+	AutoPtr<Truck> p1 = new Truck; // AutoPtr<Truck> p1(new Truck);
+	AutoPtr<Truck> p2 = p1;
+
+	p1->Go();
+}
+
+
+
+
+
+/*
 int main()
 {
 //	Truck* p1 = new Truck;
@@ -56,7 +74,7 @@ int main()
 //	p2->Release();
 //	p1->Release();
 }
-
+*/
 
 
 
