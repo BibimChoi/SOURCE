@@ -38,7 +38,7 @@ int main()
 	// Calc* pCalc = new Calc;
 
 	// Client는 Proxy를 사용시 약한결합을 해야 합니다.
-	ICalc* pCalc = new Calc;
+	ICalc* pCalc = ??;
 
 	cout << pCalc->Add(1, 2) << endl;
 	cout << pCalc->Sub(1, 2) << endl;
