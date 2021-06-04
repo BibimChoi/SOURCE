@@ -6,7 +6,14 @@
 class Calc : public ICalc
 {
 	int server;
+
+	mutable int refCount = 0;
 public:
+	void AddRef() const { ++refCount; }
+	void Release()const { if (--refCount == 0) delete this; }
+
+	~Calc() { std::cout << "~Calc" << std::endl; }
+	
 	Calc() { server = ec_find_server("Calc"); }
 
 	int Add(int a, int b)
