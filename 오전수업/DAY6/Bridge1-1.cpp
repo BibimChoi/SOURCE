@@ -65,8 +65,11 @@ public:
 int main()
 {
 	People p;
-	IPod pod;
-	p.Use(&pod);
+	MP3 mp3;
+	p.Use(&mp3);
+
+	//IPod pod;
+	//p.Use(&pod);
 }
 
 
