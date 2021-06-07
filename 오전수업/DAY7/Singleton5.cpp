@@ -30,8 +30,14 @@ public:
 
 
 	static Cursor& getInstance()
-	{
-		lock_guard<std::mutex> lg(mtx); // mtx를 lg라는 지역변수 객체로 관리 합니다.
+	{		
+//		lock_guard<std::mutex> lg(mtx); // mtx를 lg라는 지역변수 객체로 관리 합니다.
+										// 생성자에서 mtx.lock() 수행
+										// 핵심 ) 함수 에서 예외 발생시 지역변수는 안전하게 파괴
+										//		되므로 mtx.unlock()이 보장됩니다
+										// stack unwinding(stack 풀기)라고 불리는 개념.
+
+		std::lock_guard<std::mutex> lg(mtx); // C++ 표준에 이미 있습니다.
 
 //		mtx.lock();
 
@@ -39,7 +45,7 @@ public:
 			sinstance = new Cursor;
 
 //		mtx.unlock();
-
+//	    함수 종료시 지역변수인 lg의 소멸자에서 unlock() 수행		
 		return *instance;
 	}
 
