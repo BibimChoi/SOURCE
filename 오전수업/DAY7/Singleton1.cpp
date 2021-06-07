@@ -3,6 +3,9 @@
 
 // 싱글톤 : 오직 한개의 객체만 존재하는 것.
 
+// Meyer's 의 싱글톤 : 오직 한개있는 객체가 static 지역변수로 있는 모델.
+// effective-C++ 책의 저자인 "scott-meyer" 가 만들 모델
+
 class Cursor
 {
 	// 규칙 1. 생성자를 private 에..
