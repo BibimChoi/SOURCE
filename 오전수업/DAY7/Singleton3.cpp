@@ -14,7 +14,7 @@ public:
 		if (sinstance == nullptr)
 			sinstance = new Cursor;
 
-		return instance;
+		return *instance;
 	}
 };
 Cursor* Cursor::sinstance = nullptr;
