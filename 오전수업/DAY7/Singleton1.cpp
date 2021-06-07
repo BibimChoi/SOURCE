@@ -1,4 +1,7 @@
-// 1_싱글톤1 - 123 page
+// codexpert.org 에서 DAY7.zip 받으세요
+
+
+// 7_싱글톤1 - 123 page
 #include <iostream>
 
 // 싱글톤 : 오직 한개의 객체만 존재하는 것.
@@ -13,6 +16,9 @@ private:
 	Cursor() {}
 
 	// 규칙 2. 컴파일러에게 복사생성자와 대입연산자를 만들지 못하게 한다.
+	// => 삭제하지 않고 private 에만 두면.. 외부에서는 사용할수 없지만
+	//	  내부적으로는 복사 생성자가 호출될수 있습니다. 내부적으로도 사용못하게 하기위해
+	//    삭제합니다.
 	Cursor(const Cursor&) = delete;
 	Cursor& operator=(const Cursor&) = delete;
 
