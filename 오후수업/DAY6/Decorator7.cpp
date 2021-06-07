@@ -70,3 +70,9 @@ int main()
 							
 }
 
+// C# 의 입출력은 "저장소" 와 "Decorator"개념으로 설계되어 있습니다.
+// 저장소				Decorator
+// FileStream			GZipStream
+// NetworkStream		EncryptStream
+// PipeStream			XmlStream
+// MemoryStream			HtmlStream
