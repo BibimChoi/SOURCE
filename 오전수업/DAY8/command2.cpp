@@ -51,6 +51,11 @@ public:
 
 		delete s;
 	}
+	// template method 패턴 입니다....
+	// 그런데, 변하는 가상함수가 하는 일이 어떤 타입의 객체를 만들지 결정한다면
+	// "Factory method" 라고도 합니다.
+	// "Factory method" : 객체를 만들기 위한 인터페이스를 정의 하지만
+	//				어떤 객체를 만들지는 파생클래스가 결정한다.	
 	virtual Shape* CreateShape() = 0;
 };
 
