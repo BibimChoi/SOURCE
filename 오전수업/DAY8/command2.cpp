@@ -59,6 +59,10 @@ public:
 	virtual Shape* CreateShape() = 0;
 };
 
+// factory class  : 객체를 만드는 역활을 하는 클래스
+// factory method : 객체를 만드는 가상함수 - 어떤 타입의 객체인지는 파생 클래스가 결정
+
+
 // 사각형을 추가하는 명령
 class AddRectCommand : public AddCommand
 {
