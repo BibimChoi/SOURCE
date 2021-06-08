@@ -30,5 +30,8 @@ public:
 
 int main()
 {
-
+	// 아래 처럼 rs에 접근하는 코드가 있어야 rs가 생성됩니다.(템플릿의 지연된 인스턴스화 때문에)
+	// 없으면 "지연된 인스턴스화" 때문에 rs가 생성되지 않습니다.
+	RegisterShape& r1 = Rect::rs;
+	RegisterShape& r2 = Circle::rs;
 }
