@@ -51,15 +51,48 @@ public:
 	}
 };
 
+class AddCircleCommand : public ICommand
+{
+	std::vector<Shape*>& v;
+public:
+	AddCircleCommand(std::vector<Shape*>& v) : v(v) {}
 
+	void Execute() override { v.push_back(new Circle); }
+	bool CanUndo() override { return true; }
+	void Undo() override
+	{
+		Shape* s = v.back();
+		v.pop_back();
 
+		delete s;
+	}
+};
+// vector가 가진 모든 도형을 그리는 명령
+class DrawCommand : public ICommand
+{
+	std::vector<Shape*>& v;
+public:
+	DrawCommand(std::vector<Shape*>& v) : v(v) {}
 
-
+	void Execute() override 
+	{ 
+		for (auto p : v) p->Draw();
+	}
+	bool CanUndo() override { return true; }
+	void Undo() override
+	{
+		system("cls");
+	}
+};
 
 
 int main()
 {
 	std::vector<Shape*> v;
+	
+	std::stack<ICommand*> cmd_stack; // 모든 명령을 보관할 stack
+
+	ICommand* pCmd;
 
 	while (1)
 	{
@@ -68,16 +101,22 @@ int main()
 
 		if (cmd == 1) 
 		{
-			v.push_back(new Rect);
+			// 사각형을 추가하는 명령 객체를 만들어서 사용
+			pCmd = new AddRectCommand(v);
+			pCmd->Execute();
+			cmd_stack.push(pCmd);
 		}
 		else if (cmd == 2) 
 		{
-			v.push_back(new Circle);
+			pCmd = new AddCircleCommand(v);
+			pCmd->Execute();
+			cmd_stack.push(pCmd);
 		}
 		else if (cmd == 9)
 		{
-			for (auto p : v)
-				p->Draw();
+			pCmd = new DrawCommand(v);
+			pCmd->Execute();
+			cmd_stack.push(pCmd);
 		}
 
 	}
