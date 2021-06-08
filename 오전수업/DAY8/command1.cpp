@@ -118,6 +118,21 @@ int main()
 			pCmd->Execute();
 			cmd_stack.push(pCmd);
 		}
+		else if (cmd == 0)
+		{
+			if (cmd_stack.empty() == false)
+			{
+				pCmd = cmd_stack.top();
+				cmd_stack.pop();
+
+				if (pCmd->CanUndo())
+				{
+					pCmd->Undo();
+				}
+
+				delete pCmd; // delete 하지말고, redo_stack.push(pCmd) 하면 redo 도 만들수 있습니다.
+			}
+		}
 
 	}
 }
