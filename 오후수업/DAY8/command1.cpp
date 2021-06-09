@@ -93,6 +93,10 @@ int main()
 {
 	std::vector<Shape*> v;
 
+	std::stack<ICommand*> cmd_stack; // Undo 를 만들기 위해.. 모든 명령 보관
+
+	ICommand* pCmd;
+
 	while (1)
 	{
 		int cmd;
@@ -100,19 +104,39 @@ int main()
 
 		if (cmd == 1) 
 		{
-			v.push_back(new Rect);
+			pCmd = new AddRectCommand(v);
+			pCmd->Execute();
+			cmd_stack.push(pCmd);
 		}
 		else if (cmd == 2) 
 		{
-			v.push_back(new Circle);
+			pCmd = new AddCircleCommand(v);
+			pCmd->Execute();
+			cmd_stack.push(pCmd);
 		}
 		else if (cmd == 9)
 		{
-			for (auto p : v)
-				p->Draw();
+			pCmd = new DrawCommand(v);
+			pCmd->Execute();
+			cmd_stack.push(pCmd);
+		}
+		else if (cmd == 0)
+		{
+			if (cmd_stack.empty() == false)
+			{
+				pCmd = cmd_stack.top();
+				cmd_stack.pop();
+
+				if (pCmd->CanUndo())
+					pCmd->Undo();
+
+				delete pCmd;
+			}
 		}
 
 	}
 }
 
 
+// codexpert.org   DAY8.zip 받으세요
+// github.com/codenuri/SOURCE   오후수업/DAY8/command1.cpp
