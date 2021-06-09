@@ -22,6 +22,12 @@ public:
 	void Draw() override { std::cout << "Draw Circle" << std::endl; }
 };
 //------------------------------
+
+// Command 패턴 : 명령을 캡슐화 해서 명령의 저장/복구가 가능하게 한다.
+//				 Undo 기능을 구현할때 널리 사용
+
+// QT 라이브러리에 "UndoManager"라는 클래스가 이 패턴을 사용합니다.
+
 // 프로그램에서 사용하는 모든 명령을 객체화 한다.
 
 // 모든 명령의 인터페이스
@@ -130,7 +136,8 @@ int main()
 				if (pCmd->CanUndo())
 					pCmd->Undo();
 
-				delete pCmd;
+				delete pCmd; // redo 하려면 명령을 지우지 말고
+							 // redo_stack.push(pCmd) 하면 됩니다.
 			}
 		}
 
