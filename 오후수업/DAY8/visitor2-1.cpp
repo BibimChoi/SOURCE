@@ -22,6 +22,16 @@ public:
 	void Visit(T& e) { std::cout << e << ", "; }
 };
 
+// 모든 요소를 0으로 하는 방문자
+// 결국, 한개 요소에 대한 연산만 정의 한후
+// 복합객체에 넣으면(Accept), 복합객체가 모든 요소를 visit로 보내 줍니다
+template<typename T> class ZeroVisitor : public IVisitor<T>
+{
+public:
+	void Visit(T& e) { e = 0; }
+};
+
+
 // 컨테이너는 방문자를 받아들여야 한다.
 template<typename T> struct IAcceptor
 {
