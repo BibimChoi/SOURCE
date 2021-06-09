@@ -161,5 +161,8 @@ int main()
 
 
 
-
+// 숙제 
+MenuItemTitleChange mitc("===> ");
+menubar->Accept(&mitc); // 메뉴바가 가진 모든 메뉴중 MenuItem 에만
+					// 타이틀 앞에 ===> 를 추가하는 방문자
 
