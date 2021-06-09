@@ -2,22 +2,40 @@
 #include <list>
 #include <vector>
 
-// 요소를 2배로 하는 Visitor 
-// 핵심 : Visitor는 결국 "한개의 요소에 대한 연산을 정의" 한 객체 입니다.
-template<typename T> class TwiceVisitor
+
+// 방문자의 인터페이스
+template<typename T> struct IVisitor
+{
+	virtual void Visit(T& e) = 0;
+	virtual ~IVisitor() {}
+};
+
+template<typename T> class TwiceVisitor : public IVisitor<T>
 {
 public:
 	void Visit(T& e) { e = e * 2; }
 };
-// STL list는 방문자 패턴을 사용하지 않고 있는데, 사용하도록 확장해 봅시다.
-template<typename T> class MyList : public std::list<T>
+
+template<typename T> class ShowVisitor : public IVisitor<T>
 {
 public:
-	using std::list<T>::list;  // 기반 클래스인 list의 생성자를 상속해 달라.
+	void Visit(T& e) { std::cout << e << ", "; }
+};
 
-	void Accept(TwiceVisitor<T>* visitor)
+// 컨테이너는 방문자를 받아들여야 한다.
+template<typename T> struct IAcceptor
+{
+	virtual void Accept(IVisitor<T>*) = 0;
+	virtual ~IAcceptor() {}
+};
+
+template<typename T> class MyList : public std::list<T>, public IAcceptor<T>
+{
+public:
+	using std::list<T>::list;  
+
+	void Accept(IVisitor<T>* visitor)
 	{
-		// 핵심 : list의 모든 요소를 방문자에게 전달 합니다.
 		for (auto& e : *this)
 			visitor->Visit(e);
 	}
@@ -25,9 +43,16 @@ public:
 int main()
 {
 	MyList<int> s = { 1,2,3,4,5,6,7,8,9,10 };
-	
+
 	TwiceVisitor<int> tv;
-	s.Accept(&tv);       
+	s.Accept(&tv);
+
+	ShowVisitor<int> sv; // 모든 요소를 화면 출력하는 방문자
+	s.Accept(&sv);
+
+	// 방문자는 list 뿐아니라 모든 컨테이너를 방문해야 합니다.
+//	MyVector<int> v = { 1,2,3,4 };
+//	v.Accept(&tv);
 }
 
 
