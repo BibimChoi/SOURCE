@@ -122,6 +122,7 @@ class PopupMenuTitleChangeVisitor : public IMenuVisitor
 {
 public:
 	void Visit(MenuItem* m) override {}
+
 	void Visit(PopupMenu* m) override 
 	{
 		std::string s = m->getTitle();
@@ -157,6 +158,12 @@ int main()
 	PopupMenuTitleChangeVisitor v;
 	menubar->Accept(&v);
 
+	// 숙제로 아래 코드 만들어 보세요
+//	MenuItemTitleChangeVisitor v2("===>");
+//	menubar->Accept(&v2);  // MenuItem 타입의 메뉴 에만 앞에 "===>"를 붙이는 방문자
+
+	// 위 코드 해보고..
+	// Accept() 함수 구현 분석해 보면 원리 파악 어렵지 않습니다
 
 	// 시작하려면어떻게 할까요 ?
 	menubar->command();
