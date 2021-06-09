@@ -1,3 +1,10 @@
+// Command1 : 모든 명령을 객체화 해서 저장/복구 하는 개념
+// Command2 : 각 클래스의 공통의 특징은 "기반 클래스를 만들어서 제공"
+// Command3 : Composite 패턴으로 MacroCommand 만들기
+
+// QT 라이브러리 안에 "UndoManager" 클래스가 있습니다
+
+
 // 1_Command - 172 page
 #include <iostream>
 #include <vector>
