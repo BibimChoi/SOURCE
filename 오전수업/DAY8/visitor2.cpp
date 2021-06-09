@@ -39,6 +39,16 @@ template<typename T> struct TwiceVisitor : public IVisitor<T>
 	void Visit(T& e) override { e = e * 2; }
 };
 
+template<typename T> struct ShowVisitor : public IVisitor<T>
+{
+	void Visit(T& e) override { std::cout << e << ", ";  }
+};
+
+template<typename T> struct ZeroVisitor : public IVisitor<T>
+{
+	void Visit(T& e) override { e = 0; }
+};
+
 int main()
 {
 	MyList<int> s = { 1,2,3,4,5,6,7,8,9,10 };
@@ -46,8 +56,12 @@ int main()
 	TwiceVisitor<int> tv; 
 	s.Accept(&tv);        
 
-//	ShowVisitor<int> sv;
-//	s.Accept(&sv);
+	ShowVisitor<int> sv; // 모든 요소를 출력하는 방문자
+	s.Accept(&sv);
+
+	ZeroVisitor<int> zv; // 모든 요소를 0으로
+	s.Accept(&zv);
+
 }
 
 
