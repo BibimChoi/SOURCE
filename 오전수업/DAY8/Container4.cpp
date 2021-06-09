@@ -21,6 +21,14 @@ public:
 
 // slistImpl 을 직접 사용하면 "항상 캐스팅 코드" 가 나오기 때문에 불편합니다.
 // 이제, 캐스팅만 책임지는 클래스 템플릿을 제공합니다.
+
+// "Thin Template 또는 Template hoisting" 이라고 불리는 기술입니다.
+// 메모리가 부족한 환경에서 "캐스팅만 책임지는 템플릿"을 만드는 기술
+// github.com/aosp-mirror
+// platform system core
+// libutils/include/utils/vector.h   vectorImpl.h
+// C++ Idioms 사이트에서 "Thin Template" 참고
+template<typename T> class slist : private slistImpl
 template<typename T> class slist : public slistImpl
 {
 public:
