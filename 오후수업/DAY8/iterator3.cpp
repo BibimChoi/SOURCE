@@ -43,12 +43,19 @@ public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
 	T& front() { return head->data; }
 
+	/*
 	slist_iterator<T> begin()
 	{
 		return slist_iterator<T>(head); // new를 사용하지 않고. 일반 스택객체로 반환
 	}
-};
+	*/
 
+	// 모든 컨테이너 설계자는 자신의 반복자 이름을 "iterator" 라는 약속된
+	// 형태로 외부에 노출하기로 약속하자.
+	typedef slist_iterator<T> iterator;
+
+	iterator begin() {	return iterator(head);	}
+};
 int main()
 {
 	slist<int> s;
@@ -57,7 +64,10 @@ int main()
 	s.push_front(30);
 	s.push_front(40);
 
-	slist_iterator<int> p = s.begin();
+	slist<int>::iterator p = s.begin();
+
+//	slist_iterator<int> p = s.begin();
+//	vector_iterator<int> p = v.begin();
 
 	std::cout << *p << std::endl;
 
