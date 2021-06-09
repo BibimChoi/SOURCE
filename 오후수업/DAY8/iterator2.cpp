@@ -92,6 +92,7 @@ int main()
 		
 	// 반복자 꺼내서 사용하기
 	IEnumerator<int>* p = s.GetEnumerator();
+//	IEnumerator<int>* p = v.GetEnumerator(); // 핵심.. 컨테이너가 변경되어도 사용법이 동일해야한다.
 
 	std::cout << p->GetObject() << std::endl;  // 40
 
@@ -100,8 +101,21 @@ int main()
 
 	p->MoveNext();
 	std::cout << p->GetObject() << std::endl;  // 20
-
 }
+
+// 위 방식을 STL 이 사용하지 않은 이유(단점)
+
+// 1. MoveNext()등의 함수가 가상함수(인터페이스기반)로 되어 있다.
+//    가상함수 호출의 오버헤드(컨테이너 안에 요소가 많을 경우)
+
+// 2. 진짜 배열도 컨테이너이다.
+//	  진짜 배열을 ++p 로 이동하고 *p 로 요소에 접근한다.
+//    MoveNext() 와는 다른 방식이다.
+
+// 3. GetEnumerator()가 반환한 반복자는 힙에 동적할당 되었다.
+//    반드시 사용후 delete 해야 한다.
+//    C#/java 는 "garbage collector" 가 있으므로 상관없다.
+
 
 
 
