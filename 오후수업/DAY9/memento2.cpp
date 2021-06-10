@@ -38,9 +38,18 @@ public:
 		penColor = p->penColor;
 		penWidth = p->penWidth;
 	}
+
 	// 빌드시 : /std:c++17 옵션 필요 
 	void ClearMemento()
-	{
+	{		
+		// map : pair를 저장하는 tree 입니다.
+		/*
+		for (auto e : memento_map)
+		{
+			// 현재 e는 pair 입니다.
+			delete e.second;
+		}
+		*/
 		// C++17 structure binding 문법
 		for (auto[key, p] : memento_map)
 		{
@@ -88,6 +97,7 @@ int main()
 	// g.SetStrokeWidth(10);
 
 	g.RestoreState(token); // 저장했던 상태를 복구
+	g.RestoreState(token);
 }
 
 
