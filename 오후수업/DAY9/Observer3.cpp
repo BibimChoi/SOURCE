@@ -101,8 +101,15 @@ public:
 int main()
 {
 	Table t;
-	BarGraph bg; t.attach(&bg);
-	PieGraph pg; t.attach(&pg);
+//	BarGraph bg; t.attach(&bg);
+//	PieGraph pg; t.attach(&pg);
+
+	BarGraph* p1 = new BarGraph;
+	PieGraph* p2 = new PieGraph;
+
+	t.attach(p1);
+	t.attach(p2);
+
 	t.edit();
 }
 
