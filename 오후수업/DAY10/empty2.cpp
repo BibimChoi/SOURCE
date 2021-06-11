@@ -6,6 +6,7 @@
 //				sizeof(adopt_lock_t) ===> 1 
 //				아무런 멤버도 없지만 "하나의타입" 이므로 함수 오버로딩에 사용될수 있다.
 class adopt_lock_t {};
+
 adopt_lock_t adopt_lock;
 
 // RAII ( Resource Acquision Is Initialization )
@@ -29,7 +30,12 @@ void foo()
 	if (m.try_lock())
 	{
 		// unlock 을 위해서만 lock_guard를 사용하고 싶다.
-		lock_guard<std::mutex> g(m, adopt_lock);
+	//	lock_guard<std::mutex> g(m, adopt_lock);
+	//	lock_guard<std::mutex> g(m, {}); // adopt_lock_t 가 explicit 생성자가 아니면
+											// 이 표기법 허용
+
+		std::lock_guard<std::mutex> g(m, std::adopt_lock); //ok
+		std::lock_guard<std::mutex> g(m, {}); // error. explicit 생성자
 
 		//....
 	
